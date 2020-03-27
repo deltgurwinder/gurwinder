@@ -1,0 +1,58 @@
+header {
+    @include clearfix();
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid gray;
+    @include breakpoint($mobile) {
+        margin-bottom: 20px;
+    }
+    .logo {
+        float: left;
+        max-width: 208px;
+        width: 100%;
+        display: block;
+        @include breakpoint($tablet) {
+            width: 38%;
+        }
+        img {
+            width: 100%;
+        }
+    }
+    .content {
+        float: right;
+        width: 230px;
+        .flatblock-content {
+            border-bottom: 1px solid lightgray;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            p {
+                margin: 0;
+            }
+        }
+        .block-headerquote {
+            @include breakpoint($mobile) {
+                display: none;
+            }
+        }
+        #google_search {
+            .gsc-search-button {
+                border: 1px solid #111184;
+                background-color: #111184;
+                transition: all 0.2s linear;
+                &:hover {
+                    background-color: lighten(#111184, 10%);
+                }
+                &:active {
+                    background-color: lighten(#111184, 20%);
+                }
+            }
+            input[type="text"].gsc-input {
+                border: 1px solid #BCCDF0;
+                background-image: url("/static/css/img/googlelogo_lightgrey_46x16dp.png");
+                background-position: left center;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+}

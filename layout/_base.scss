@@ -1,0 +1,67 @@
+body {
+    font-family: "Droid Serif", Georgia, "Times New Roman", Times, serif;
+    font-size: 16px;
+    line-height: 1.2;
+
+    .ym-wrapper {
+        padding: 40px 40px 0 40px;
+
+        @include breakpoint($tablet) {
+            padding: 40px 20px 0 20px;
+        } 
+
+        @include breakpoint($mobile) {
+            padding: 20px 10px 0 10px;
+        } 
+    }
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+p {
+    margin: 0 0 20px 0;
+}
+
+.block {
+    margin-bottom: 20px;
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    
+        li {
+            margin: 0;
+            padding: 0;
+            display: block;
+            
+
+            @include breakpoint($tablet) {
+                text-align: center;
+            } 
+        }
+    }
+}
+
+a {
+    color: #111184;
+    transition: all 0.2s linear;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+blockquote {
+    margin: 0 0 1em .8em;
+}

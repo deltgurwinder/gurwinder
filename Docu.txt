@@ -1,0 +1,13 @@
+_post.css
+
+bilder noch kleiner gesetzt auf -450px
+geht das auch in der Höhe zusätlich? 
+und auch in allen Medien?
+
+ img {
+        width: 100%;
+        &.align-right {
+            float: right;
+            width: calc(100% - 450px);
+            padding: 10px 0 10px 10px;
+

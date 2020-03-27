@@ -1,0 +1,15 @@
+// Facebook Kommentar Plugin überschreiben
+
+.fb-comments {
+    max-width: none;
+    margin-bottom: 40px;
+
+    @include breakpoint($mobile) {
+        margin-bottom: 40px;
+    }
+
+    #u_0_0 {
+        width: 100%;
+    }
+}
+

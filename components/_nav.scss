@@ -1,0 +1,74 @@
+nav {
+	padding: 20px;
+	background: #eee;
+
+	ul.navbar-one {
+		&:before {
+			content: "Kategorien:";
+			display: block;
+			font-weight: bold;
+			font-size: 1em;
+			font-family: LibreBaskervilleBold;
+			margin-bottom: 10px;
+		}
+
+		li {
+			border-bottom: 1px solid grey;
+			padding: 4px 0;
+			margin-bottom: 4px;
+			display: block;
+
+			a {
+				color: #111184;
+				font-size: 1em;
+				font-weight: bold;
+				display: block;
+				text-transform: capitalize;
+			}
+		}
+	}
+}
+
+.block-darstellung {
+	padding: 20px;
+	background: #eee;
+	margin-bottom: 20px;
+	font-size: 0.875em;
+
+	.block {
+		margin: 0;
+	}
+
+	ul {
+		li {
+			margin-bottom: 4px;
+			display: block;
+
+			a {
+				color: #111184;
+				display: block;
+				//text-transform: capitalize;
+			}
+		}
+	}
+}
+
+.block.unterstuetzung,
+#mitmachen,
+.block.werbung,
+.block.facebook,
+.block.promotion,
+.block.anzeige {
+	border-bottom: 1px solid grey;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	font-size: 0.875em;
+
+	.blocktitel {
+		margin-bottom: 10px;
+	}
+
+	form {
+		margin-bottom: 10px;
+	}
+}

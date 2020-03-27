@@ -1,0 +1,31 @@
+body .fb-page blockquote {
+	margin-left: 0;
+}
+footer .block ul li {
+	line-height: 24px;
+}
+
+@media (max-width: 768px) {
+	body header .logo {
+		width: 100%;
+		margin: 0 auto;
+		float: none;
+	}
+}
+
+@media (max-width: 850px) {
+	body .post_list .post_clearfix img {
+		float: none;
+		max-width: 100%;
+		width: 100%;
+		height: auto;
+		max-height: none;
+		padding-right: 0;
+	}
+}
+
+@media (max-width: 740px) {
+	body .ym-cbox.ym-clearfix {
+		padding-left: 0;
+	}
+}

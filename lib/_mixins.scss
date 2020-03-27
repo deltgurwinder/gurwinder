@@ -1,0 +1,258 @@
+// Mixins
+
+// Modern micro clearfix provides an easy way to contain floats without adding additional markup.
+// Beat *that* clearfix: [Thierry Koblentz](http://www.css-101.org/articles/clearfix/latest-new-clearfix-so-far.php)
+//
+// Example usage:
+//
+//    // Contain all floats within .wrapper
+//    .wrapper {
+//      @include clearfix;
+//      .content,
+//      .sidebar {
+//        float : left;
+//      }
+//    }
+
+@mixin clearfix {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+// ------------------------------------------------------------
+// Hide from both screenreaders and browsers: h5bp.com/u
+// ------------------------------------------------------------
+@mixin hidden {
+	display: none !important;
+	visibility: hidden;
+}
+
+// ------------------------------------------------------------
+// Hide only visually, but have it available for screenreaders: h5bp.com/v
+// ------------------------------------------------------------
+@mixin visuallyhidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+// ------------------------------------------------------------
+// Fluid / Responsive Images
+// ------------------------------------------------------------
+@mixin img-responsive {
+	max-width: 100%;
+	height: auto;
+}
+
+// ------------------------------------------------------------
+// Debug mode assigns a light, semi-transparent, background to
+// every element on the page. It's a little trick picked up
+// over the years that makes visualizing the structure of your
+// site trivial.
+// Source: http://jeet.gs/
+// ------------------------------------------------------------
+@mixin debug() {
+	* {
+		background: #eee;
+		background: rgba(255, 0, 0, 0.1);
+	}
+}
+
+// ------------------------------------------------------------
+// Background transparency back to IE8/7
+// ------------------------------------------------------------
+@mixin transparent-bg($color, $alpha) {
+	$rgba: rgba($color, $alpha);
+	$ie-hex-str: ie-hex-str($rgba);
+	background-color: transparent;
+	background-color: $rgba;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$ie-hex-str},endColorstr=#{$ie-hex-str});
+	zoom: 1;
+}
+
+// für Rückwärtskompatibilität:
+@mixin transparent($color, $alpha) {
+	@include transparent-bg($color, $alpha);
+}
+
+// ------------------------------------------------------------
+// Background-Size
+// ------------------------------------------------------------
+@mixin background-size($size) {
+	@include prefixer("background-size", $size, webkit moz ms o spec);
+}
+
+// ------------------------------------------------------------
+// Horizontal/Vertical/Both Alignment
+// - Parent container needs position relative.
+// - IE9+
+// Source: http://jeet.gs/
+// ------------------------------------------------------------
+@mixin align($direction: both) {
+	position: absolute;
+	@if ($direction == horizontal) or ($direction == h) {
+		left: 50%;
+		transform: translateX(-50%);
+	} @else if ($direction == vertical) or ($direction == v) {
+		top: 50%;
+		transform: translateY(-50%);
+	} @else {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+// ------------------------------------------------------------
+// Opacity - deprecated!! nicht verwenden!!
+// ------------------------------------------------------------
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	$opacity-ie: $opacity * 100;
+	filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// ------------------------------------------------------------
+// Cross browser inline block
+// ------------------------------------------------------------
+@mixin inline-block() {
+	display: -moz-inline-stack;
+	display: inline-block;
+	vertical-align: top;
+	zoom: 1;
+	*display: inline;
+}
+
+// ------------------------------------------------------------
+// Font Size
+// ------------------------------------------------------------
+@mixin font-size($sizeValue: 12) {
+	font-size: $sizeValue + px; //fallback for old browsers
+	font-size: (0.125 * $sizeValue) + rem;
+	// font-size: em($sizeValue);
+}
+
+// ------------------------------------------------------------
+// Line Height
+// ------------------------------------------------------------
+@mixin line-height($heightValue: 12) {
+	line-height: $heightValue + px; //fallback for old browsers
+	line-height: (0.125 * $heightValue) + rem;
+}
+
+// ------------------------------------------------------------
+// letter Spacing from px to em
+// ------------------------------------------------------------
+@mixin letter-spacing-px($value) {
+	letter-spacing: $value/1000 + em;
+}
+
+// ------------------------------------------------------------
+// Media Query Breakpoints
+// ------------------------------------------------------------
+@mixin breakpoint($point) {
+	@if $point == large-desktop {
+		@media (max-width: 1250px) {
+			@content;
+		}
+	} @else if $point == desktop {
+		@media (max-width: 984px) {
+			@content;
+		}
+	} @else if $point == tablet {
+		@media (max-width: 768px) {
+			@content;
+		}
+	} @else if $point == mobile {
+		@media (max-width: 480px) {
+			@content;
+		}
+	} @else {
+		@media (max-width: $point) {
+			@content;
+		}
+	}
+}
+
+// ------------------------------------------------------------
+// linear Gradient (@include linearGradient(#cccccc, #666666);)
+// ------------------------------------------------------------
+
+@mixin linearGradient($top, $bottom) {
+	background: $top; /* Old browsers */
+	background: -moz-linear-gradient(top, $top 0%, $bottom 100%); /* FF3.6+ */
+	background: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0%, $top),
+		color-stop(100%, $bottom)
+	); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(
+		top,
+		$top 0%,
+		$bottom 100%
+	); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(
+		top,
+		$top 0%,
+		$bottom 100%
+	); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, $top 0%, $bottom 100%); /* IE10+ */
+	background: linear-gradient(to bottom, $top 0%, $bottom 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+// ------------------------------------------------------------
+// linear Gradient (@include linearGradient(#cccccc, #666666);)
+// ------------------------------------------------------------
+@function strip-units($number) {
+	@return $number / ($number * 0 + 1);
+}
+
+// ------------------------------------------------------------
+// String Replace
+// ------------------------------------------------------------
+
+@function str-replace($string, $search, $replace: "") {
+	$index: str-index($string, $search);
+
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace +
+			str-replace(
+				str-slice($string, $index + str-length($search)),
+				$search,
+				$replace
+			);
+	}
+
+	@return $string;
+}
+
+// ------------------------------------------------------------
+// Font Face
+// ------------------------------------------------------------
+
+@mixin font-face($family, $src, $style: normal, $weight: normal) {
+	@font-face {
+		font-family: $family;
+		src: url("#{$src}.eot"); // IE9 compat
+		src: url("#{$src}.eot?#iefix") format("embedded-opentype"),
+			// IE8 and below
+				url("#{$src}.woff") format("woff"),
+			// standards
+				url("#{$src}.ttf") format("truetype"),
+			// Safari, Android, iOS
+				url("#{$src}.svg##{$family}") format("svg"); // legacy iOS
+		font-style: $style;
+		font-weight: $weight;
+	}
+}

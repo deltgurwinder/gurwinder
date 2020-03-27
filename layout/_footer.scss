@@ -1,0 +1,46 @@
+footer {
+	display: flex;
+	background-color: #eee;
+	padding: 20px 10px;
+	font-size: 1em;
+
+	@include breakpoint($tablet) {
+		display: block;
+	}
+
+	.block {
+		margin-right: 20px;
+
+		&:last-of-type {
+			margin-right: 0;
+		}
+
+		@include breakpoint($tablet) {
+			margin-right: 0;
+		}
+	}
+
+	.blocktitel {
+		color: #000;
+		margin-bottom: 6px;
+
+		@include breakpoint($tablet) {
+			text-align: center;
+		}
+	}
+
+	.suma {
+		@include breakpoint($tablet) {
+			text-align: center;
+		}
+
+		img {
+			max-width: 255px;
+			width: 100%;
+
+			@include breakpoint($tablet) {
+				max-width: 200px;
+			}
+		}
+	}
+}

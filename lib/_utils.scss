@@ -1,0 +1,52 @@
+*, *:after, *:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+* {
+    outline: none;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+	color: inherit;
+}
+
+.dimmer {
+	@include transparent-bg(#000, .2);
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	display: none;
+	z-index: 100;
+	cursor: pointer;
+}
+
+.only-large {
+	@include breakpoint($mobile) {
+		display: none;
+	}
+}
+
+.only-small {
+	display: none;
+	
+	@include breakpoint($mobile) {
+		display: inherit;
+	}
+}
+
+%clearfix {
+	@include clearfix();
+}
+
+.clear {
+    clear:both;
+}
